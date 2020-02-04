@@ -20,14 +20,14 @@ def index():
             print(str(color))
             return redirect('/')
     else:
-        name = request.form['find_name']
-        print(name)
-        if name != None:
-            try:
-                print(redis.get(name))
-            except:
-                print("couldn't find that user")
-            return redirect('/')
         return render_template('index.html')
+
+@app.route('/find', methods =['GET', 'POST'])
+def find(name=None):
+    if request.method == 'POST':
+        return redirect('/find')
+    else:
+        return render_template('find.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', debug=True)
