@@ -27,7 +27,18 @@ def find(name=None):
     if request.method == 'POST':
         return redirect('/find')
     else:
-        return render_template('find.html')
+        name = request.args.get("name")
+        if name != None:
+            try:
+                color = redis.get(name).decode('utf-8')
+                print(str(color))
+                print('found %s , there favorite color is %s' %(name, color))
+                return render_template('find.html', name=name)
+            except:
+                print('something went wrong finding %s' % (name))
+                return render_template('find.html', name=name)
+        else:
+            return render_template('find.html', name=None)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', debug=True)
