@@ -1,3 +1,6 @@
+:root{
+  --bg-color: #fffffe;
+}
 
 body {
   margin: 0;
@@ -29,3 +32,15 @@ body {
 .content:hover{
   box-shadow: 0 14px 28px #272343, 0 10px 10px #272343
 }
+
+.blinking {
+  -webkit-animation: color-me-in 6s linear infinite alternate;
+}
+
+@keyframes color-me-in {
+  0% {
+    background: #fffffe;
+  }
+  100% {
+    background: var(--bg-color);
+  }

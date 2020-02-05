@@ -33,10 +33,10 @@ def find(name=None):
                 color = redis.get(name).decode('utf-8')
                 print(str(color))
                 print('found %s , there favorite color is %s' %(name, color))
-                return render_template('find.html', name=name)
+                return render_template('find.html', name=name, color = color)
             except:
                 print('something went wrong finding %s' % (name))
-                return render_template('find.html', name=name)
+                return render_template('find.html', name=name, color=None)
         else:
             return render_template('find.html', name=None)
 
