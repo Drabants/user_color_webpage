@@ -10,6 +10,8 @@
     {% if color != None %}
     <script>document.addEventListener('DOMContentLoaded', function() {myFunction()}, false);</script>
     <h1>{% print(name) %} favorite color is {% print(color)%} <h1>
+      <a href="/update/{{name}}">Update</a>
+      <a href="/delete/{{name}}">Delete</a>
       <div class = "form">
       <form actions="/" method="GET">
         <input type="text" name="name" id="name">
