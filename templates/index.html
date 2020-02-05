@@ -11,7 +11,9 @@
     <div class = "form">
       <form actions="/" method="POST">
         <input type="text" name="name" id="name">
-        <select id="colors">
+
+        <select id="color" name="color">
+
           <option value="blue">Blue</option>
           <option value="red">Red</option>
           <option value="green">Green</option>
@@ -20,12 +22,6 @@
         <input type="submit" value="Add User">
       </form>
     </div>
-    <h2>Or look up a User!</h2>
-    <div class = "form">
-      <form actions="/" method="POST">
-        <input type="text" name="name" id="name">
-        <input type="submit" value="Submit">
-      </form>
-    </div>
+    <a href="find"<h2>Or look up a User!</h2></a>
 </div>
 {% endblock %}

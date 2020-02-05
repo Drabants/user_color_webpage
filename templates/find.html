@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>User Colors!</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  {% if name != None %}
+    {% if color != None %}
+    <script>document.addEventListener('DOMContentLoaded', function() {myFunction()}, false);</script>
+    <h1>{% print(name) %} favorite color is {% print(color)%} <h1>
+      <div class = "form">
+      <form actions="/" method="GET">
+        <input type="text" name="name" id="name">
+        <input type="submit" value="Find User">
+      </form>
+      </div>
+    {% else %}
+      <h1>{% print(name) %} does not exist as a User!<h1>
+      <div class = "form">
+      <form actions="/" method="GET">
+        <input type="text" name="name" id="name">
+        <input type="submit" value="Find User">
+      </form>
+      </div>
+    {% endif %}
+  {% else %}
+  <div class = "form">
+  <form actions="/" method="GET">
+    <input type="text" name="name" id="name">
+    <input type="submit" name="submit" value="Find User">
+  </form>
+  </div>
+  {% endif %}
+</div>
+<script>
+  function myFunction() {
+    document.documentElement.style.setProperty('--bg-color', "{% print(color) %}");
+    document.body.className = "blinking";
+  }
+</script>
+{% endblock %}
