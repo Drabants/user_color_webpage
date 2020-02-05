@@ -6,20 +6,26 @@
 
 {% block body %}
 <div class="content">
-    <h1>Welcome to User Colors!</h1>
-    <h2>Please enter a User and their favorite color</h2>
+    <h1>Choose {{name}}'s new favorite color!</h1>
+    <h2>Currently it is {{color}}</h2>
     <div class = "form">
       <form actions="/" method="POST">
-        <input type="text" name="name" id="name">
         <select id="color" name="color">
           <option value="blue">Blue</option>
           <option value="red">Red</option>
           <option value="green">Green</option>
           <option value="purple">Purple</option>
         </select>
-        <input type="submit" value="Add User">
+        <input type="submit" value="Update User">
       </form>
     </div>
-    <a href="/find"<h2>Or look up a User!</h2></a>
+    <a href="/"<h2>Add New User</h2></a>
+    <a href="/find"<h2>Look Up User</h2></a>
 </div>
+<script>
+  function myFunction() {
+    document.documentElement.style.setProperty('--bg-color', "{% print(color) %}");
+    document.body.className = "blinking";
+  }
+</script>
 {% endblock %}

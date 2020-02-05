@@ -40,5 +40,21 @@ def find(name=None):
         else:
             return render_template('find.html', name=None)
 
+@app.route('/delete/<name>')
+def delete(name):
+    redis.delete(name)
+    return redirect('/find')
+#I could add update name here too, but I'm leaving it just as update color
+@app.route('/update/<name>', methods =['GET', 'POST'])
+def update(name=None, color=None):
+    if request.method == 'POST':
+        color = request.form.get('color')
+        redis.set(name,color)
+        return render_template('update.html', name=name, color=color)
+    else:
+        #bug here if no name is passed in
+        return  render_template('update.html', name=name, color=color)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', debug=True)
