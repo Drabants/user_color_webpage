@@ -1,6 +1,8 @@
+
 :root{
   --bg-color: #fffffe;
 }
+
 
 body {
   margin: 0;
@@ -44,3 +46,4 @@ body {
   100% {
     background: var(--bg-color);
   }
+
