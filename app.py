@@ -2,23 +2,20 @@ from flask import Flask, render_template, request, redirect
 from redis import Redis
 
 app = Flask(__name__)
-redis = Redis(host='localhost', port=6379, db=0, password=None, socket_timeout=None,)
+redis = Redis(host='redis', port=6379)
 
 @app.route('/', methods =['POST','GET'])
 def index():
     if request.method == 'POST':
         name = request.form['name']
         color = request.form.get('color')
-        print(name)
-        print(str(color))
         try:
+            print(name)
             redis.set(name, color)
-            return redirect('/')
+            return render_template('index.html')
         except:
             print("You messed something up")
-            print(name)
-            print(str(color))
-            return redirect('/')
+            return render_template('index.html')
     else:
         return render_template('index.html')
 
