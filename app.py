@@ -9,6 +9,9 @@ def index():
     if request.method == 'POST':
         name = request.form['name']
         color = request.form.get('color')
+        #alert that user already exists
+        if redis.get(name) != None:
+            return render_template('index.html')
         try:
             print(name)
             redis.set(name, color)
@@ -21,6 +24,7 @@ def index():
 
 @app.route('/find', methods =['GET', 'POST'])
 def find(name=None):
+    #remove later
     if request.method == 'POST':
         return redirect('/find')
     else:

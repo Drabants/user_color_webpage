@@ -10,16 +10,18 @@
     <h2>Please enter a User and their favorite color</h2>
     <div class = "form">
       <form actions="/" method="POST">
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required>
         <select id="color" name="color">
-          <option value="blue">Blue</option>
-          <option value="red">Red</option>
-          <option value="green">Green</option>
-          <option value="purple">Purple</option>
+          <option value="aqua">Aqua</option>
+          <option value="crimson">Crimson</option>
+          <option value="lightgreen">Light Green</option>
+          <option value="orchid">Orchid</option>
+          <option value="aquamarine">Aquamarine</option>
         </select>
         <input type="submit" value="Add User">
       </form>
     </div>
-    <a href="/find"<h2>Or look up a User!</h2></a>
+    <br>
+    <h2><a href="/find">Or look up a User!</a></h2>
 </div>
 {% endblock %}
