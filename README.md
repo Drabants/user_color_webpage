@@ -3,7 +3,7 @@ This is a web based CRUD application that allows users to be added with their fa
 
 ## Getting Started
 
-There are multiple ways to run this application. They will be listed below in the following order: Ansible, Docker-Compose, Docker.
+There are multiple ways to run this application. They will be listed below in the following order: Ansible, Docker-Compose.
 
 ### Prerequisites
 * [docker](https://docs.docker.com/)
@@ -38,15 +38,4 @@ ansible-playbook playbook_node_usercolor.yml
 If Docker and Docker-Compose are installed, then just clone the repo and run
 ```bash
 docker-compose up
-```
-### Docker
-
-If Docker is installed, begin by building the image
-```bash
-docker build -t app_image .
-```
-This will build an image called 'app_image' in from your Dockerfile in your current directory.
-To run the image that was built use
-```bash
-docker run -p 5000:5000 app_image
 ```
