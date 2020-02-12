@@ -1,0 +1,57 @@
+---
+- hosts: test-server
+  remote_user: root
+  tasks:
+    - name: Install System Packages
+      package:
+        name:
+          - python3
+          - python3-pip
+          - python3-setuptools
+          - git
+          - redis
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+          - virtualenv
+        state: latest
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Pip Instalations
+      pip:
+        name:
+          - flask
+          - redis
+          - docker
+          - docker-compose
+          - pyyaml
+          - urllib3
+        executable: pip3
+        state: latest
+
+    - name: Update apt Packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Clone user-color-page repository
+      git:
+        repo: 'https://github.com/Drabants/user_color_webpage.git'
+        dest: /home/test
+        clone: yes
+        update: no
+
+    - name: Run `docker-compose up`
+      docker_compose:
+        project_src: /home/test
+        build: yes
+      register: output

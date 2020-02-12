@@ -1,0 +1,59 @@
+---
+- hosts: test-server
+  remote_user: root
+  tasks:
+    - name: Install System Packages
+      package:
+        name:
+          - python3
+          - python3-pip
+          - git
+          - redis
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+          - virtualenv
+        state: latest
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Ensure service is enabled
+      command: service docker restart
+
+    - name: Update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Pip Instalations
+      pip:
+        name:
+          - flask
+          - redis
+          - docker
+          - docker-compose
+          - pyyaml
+          - urllib3
+        executable: pip3
+        state: latest
+
+    - name: Update apt Packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Clone user-color-page repository
+      git:
+        repo: 'https://github.com/Drabants/user_color_webpage.git'
+        dest: /home/color
+        clone: yes
+        update: no
+
+    - name: Run `docker-compose up`
+      docker_compose:
+        project_src: /home/color
+        build: yes
+      register: output
