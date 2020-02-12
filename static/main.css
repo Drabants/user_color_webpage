@@ -8,13 +8,13 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: proxima-nova, sans-serif;
+  font-family: 'Roboto';
   font-weight: 400;
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
   height:100%;
-  color:#272343;
+  color:#001858;
   background-color:#fffffe;
 }
 
@@ -24,7 +24,7 @@ body {
   padding: 50px;
   top: 50%;
   left: 50%;
-  background-color: #fffffe;
+  background-color: #fef6e4;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   box-shadow: 0 1px 3px #272343, 0 1px 2px #272343;
@@ -39,6 +39,33 @@ body {
   -webkit-animation: color-me-in 6s linear infinite alternate;
 }
 
+a {
+  background-color: #172c66;
+  border-radius: 10px;
+  color: white;
+  margin: 20px;
+  padding: 5px 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  background-color: #001858;
+  cursor: pointer;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+/* Non-Demo Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 @keyframes color-me-in {
   0% {
     background: #fffffe;
@@ -46,4 +73,3 @@ body {
   100% {
     background: var(--bg-color);
   }
-
